@@ -7,12 +7,12 @@ function FetchDataPage() {
     );
     return response.data;
   };
-
+  
   const { data, isLoading, error } = useQuery({
     queryKey: ["posts"],
     queryFn: fetchData,
   });
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading.......</div>;
   if (error) return <div>Error: {error.message}</div>;
   return (
     <>
