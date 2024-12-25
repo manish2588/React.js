@@ -3,7 +3,7 @@ import AppLayout from "./component/AppLayout";
 import About from "./pages/About";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import FetchDataPage from "./pages/FetchDataPage";
-
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 function App() {
   const queryClient = new QueryClient();
   const router = createBrowserRouter([
@@ -26,6 +26,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router}></RouterProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
