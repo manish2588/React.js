@@ -4,6 +4,7 @@ import About from "./pages/About";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import FetchDataPage from "./pages/FetchDataPage";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import FetchDataPagination from "./pages/Pagination";
 function App() {
   const queryClient = new QueryClient();
   const router = createBrowserRouter([
@@ -18,6 +19,10 @@ function App() {
         {
           path:"/fetch",
           element:<FetchDataPage/>
+        }
+        ,{
+          path:"/pagination",
+          element:<FetchDataPagination/>
         }
       ],
     },

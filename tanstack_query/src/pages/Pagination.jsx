@@ -1,18 +1,20 @@
 import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
-function FetchDataPage() {
-  const fetchData = async () => {
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+function FetchDataPagination() {
+  const [page, setPage] = useState(0);
+  const fetchData = async (page) => {
     const response = await axios.get(
-      "https://jsonplaceholder.typicode.com/posts"
+      `https://jsonplaceholder.typicode.com/posts?_start=${page}&_limit=3`
     );
     return response.data;
   };
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["posts"],
-    queryFn: fetchData,
-    staleTime: 5000, // it means till 5 sec no request is go to server to fetch data
-    // the cache data is used to render the content which is fetch during latest render
+    queryKey: ["posts", page],
+    queryFn: () => fetchData(page),
+
+    placeholderData: keepPreviousData,
   });
   if (isLoading) return <div>Loading.......</div>;
   if (error) return <div>Error: {error.message}</div>;
@@ -27,6 +29,17 @@ function FetchDataPage() {
             <p>{post.body}</p>
           </div>
         ))}
+        <div>
+          <button
+            onClick={() => setPage((prev) => prev - 3)}
+            disabled={page === 0 ? true : false}
+          >
+            {" "}
+            Prev
+          </button>
+          <h1>{page / 3 + 1}</h1>
+          <button onClick={() => setPage((prev) => prev + 3)}>Next</button>
+        </div>
       </div>
     </>
   );
@@ -44,4 +57,4 @@ function FetchDataPage() {
 Useful Read
  */
 }
-export default FetchDataPage;
+export default FetchDataPagination;
