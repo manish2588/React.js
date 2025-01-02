@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import FetchDataPage from "./pages/FetchDataPage";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import FetchDataPagination from "./pages/Pagination";
+import InfiniteScroll from "./pages/InfiniteScroll";
+import InfiniteScrollPosts from "./pages/InfiniteScroll";
 function App() {
   const queryClient = new QueryClient();
   const router = createBrowserRouter([
@@ -23,6 +25,10 @@ function App() {
         ,{
           path:"/pagination",
           element:<FetchDataPagination/>
+        }
+        ,{
+          path:"/scroll",
+          element:<InfiniteScrollPosts/>
         }
       ],
     },
