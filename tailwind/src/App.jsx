@@ -1,12 +1,11 @@
 import "./App.css";
 import image from "../src/assets/A.png";
-import Form from "./component/Form";
-import UseReducer from "./component/UseReducer";
+
 import { AnotherButton, Button } from "./styled_component/Button";
 import { Input } from "./styled_component/Input";
-import Flex from "./tailwind/Flex";
-import Flex1 from "./tailwind/Flex1";
-import Justify from "./tailwind/Justify";
+
+import StyledPage from "./styled_component/StyledPage";
+import ScrollEventComponent from "./component/Scroll";
 
 function App() {
   return (
@@ -31,16 +30,14 @@ function App() {
           </div>
         </div>
       </section>
-     <div>
-      <h1>
-        Button from Styled Component
-      </h1>
-      <Button primary={true}> Button</Button>
-      <AnotherButton primary
-      > Another</AnotherButton>
-     </div>
-     <Input type="text" placeholder="Styled Component" />
-     <Justify/>
+      <div>
+        <h1>Button from Styled Component</h1>
+        <Button primary={true}> Button</Button>
+        <AnotherButton primary> Another</AnotherButton>
+      </div>
+      <Input type="text" placeholder="Styled Component" color="Green" />
+      <StyledPage />
+      <ScrollEventComponent/>
     </>
   );
 }
