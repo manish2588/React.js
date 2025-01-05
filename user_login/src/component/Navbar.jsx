@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,8 +11,12 @@ const Navbar = () => {
         <div className="text-white text-xl font-bold">MyWebsite</div>
 
         {/* Hamburger Menu (Mobile) */}
-        <div className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
-          <button className="text-white focus:outline-none">
+        <div className="md:hidden">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-white focus:outline-none"
+            aria-label="Toggle menu"
+          >
             {isOpen ? '✖' : '☰'}
           </button>
         </div>
@@ -20,23 +25,48 @@ const Navbar = () => {
         <div
           className={`${
             isOpen ? 'block' : 'hidden'
-          } md:flex space-x-6 text-white md:static absolute bg-blue-500 w-full md:w-auto left-0 top-full md:top-0 p-4 md:p-0`}
+          } md:flex md:items-center md:space-x-6 text-white absolute md:static left-0 top-full md:top-0 w-full md:w-auto bg-blue-500 md:bg-transparent transition-all duration-300 ease-in-out p-4 md:p-0`}
         >
-          <a href="#home" className="hover:text-gray-300">
+          <NavLink
+            to="/home"
+            className={({ isActive }) =>
+              isActive ? 'text-yellow-300 font-bold' : 'hover:text-gray-300'
+            }
+          >
             Home
-          </a>
-          <a href="#contact" className="hover:text-gray-300">
+          </NavLink>
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              isActive ? 'text-yellow-300 font-bold' : 'hover:text-gray-300'
+            }
+          >
             Contact
-          </a>
-          <a href="#order" className="hover:text-gray-300">
+          </NavLink>
+          <NavLink
+            to="/order"
+            className={({ isActive }) =>
+              isActive ? 'text-yellow-300 font-bold' : 'hover:text-gray-300'
+            }
+          >
             Order
-          </a>
-          <a href="#login" className="hover:text-gray-300">
+          </NavLink>
+          <NavLink
+            to="/login"
+            className={({ isActive }) =>
+              isActive ? 'text-yellow-300 font-bold' : 'hover:text-gray-300'
+            }
+          >
             Login
-          </a>
-          <a href="#signup" className="hover:text-gray-300">
+          </NavLink>
+          <NavLink
+            to="/signup"
+            className={({ isActive }) =>
+              isActive ? 'text-yellow-300 font-bold' : 'hover:text-gray-300'
+            }
+          >
             Signup
-          </a>
+          </NavLink>
         </div>
       </div>
     </nav>

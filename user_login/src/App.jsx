@@ -1,13 +1,27 @@
-import Navbar from "./component/Navbar";
+import { createBrowserRouter,RouterProvider } from "react-router-dom";
+import AppLayout from "./component/AppLayout";
+import Login from "./component/Login";
+import SignUp from "./component/SignUp";
+
 
 function App() {
-  return <>
-    <main>
-      <h1 className="text-2xl">User Login</h1>
-      <Navbar/>
-    </main>
-  
-  </>;
+  const router=createBrowserRouter([
+    {
+      path:"/",
+      element:<AppLayout/>,
+      children:[
+        {
+          path:"login",
+          element:<Login/>
+        },
+        {
+          path:"signup",
+          element:<SignUp/>
+        }
+      ]
+    }
+  ])
+  return <RouterProvider router={router}></RouterProvider>;
 }
 
 export default App;
