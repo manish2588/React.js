@@ -1,17 +1,32 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Email:", email);
+    console.log("Password:", password);
+    // Add login logic here (e.g., API call)
+    setEmail("");
+
+    setPassword("");
+  };
+
   return (
-    <div className="bg-white p-6 rounded shadow-md w-80">
+    <div className="bg-white p-6 rounded shadow-md w-80 mx-auto mt-10">
       <h2 className="text-2xl font-bold mb-4">Login</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-sm font-medium mb-1">Email</label>
           <input
             type="email"
             placeholder="Enter your email"
             className="w-full border px-3 py-2 rounded"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="mb-4">
@@ -20,6 +35,8 @@ const Login = () => {
             type="password"
             placeholder="Enter your password"
             className="w-full border px-3 py-2 rounded"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <button
@@ -30,11 +47,13 @@ const Login = () => {
         </button>
       </form>
       <p className="text-sm mt-4">
-        Not registered?{' '}
+        Not registered?{" "}
         <NavLink
           to="/signup"
           className={({ isActive }) =>
-            isActive ? 'text-green-500 font-bold' : 'text-blue-500 hover:underline'
+            isActive
+              ? "text-green-500 font-bold"
+              : "text-blue-500 hover:underline"
           }
         >
           Sign Up
