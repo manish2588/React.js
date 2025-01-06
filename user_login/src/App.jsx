@@ -3,6 +3,7 @@ import AppLayout from "./component/AppLayout";
 import Login from "./component/Login";
 import SignUp from "./component/SignUp";
 import Profile from "./component/Profile";
+import AdminDashboard from "./component/AdminDashboard";
 
 
 function App() {
@@ -22,6 +23,10 @@ function App() {
         {
           path:"profile",
           element:<Profile/>
+        },
+        {
+          path:"dashboard",
+          element:<AdminDashboard/>
         }
       ]
     }

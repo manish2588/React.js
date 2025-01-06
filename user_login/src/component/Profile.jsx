@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { auth, db, googleProvider } from "./firebase"; // Import Firebase configuration and Google provider
+import { useEffect, useState } from "react";
+import { auth, db } from "./firebase"; // Import Firebase configuration and Google provider
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { signInWithPopup } from "firebase/auth"; // Import sign-in method for Google
+// Import sign-in method for Google
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);

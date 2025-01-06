@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { auth } from "./firebase"; // Import Firebase auth instance
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth"; // Firebase sign-in methods
+import {
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "firebase/auth"; // Firebase sign-in methods
 import { toast, ToastContainer } from "react-toastify"; // Toastify for notifications
 import "react-toastify/dist/ReactToastify.css"; // Toastify CSS for styles
 import { useNavigate } from "react-router-dom";
@@ -14,7 +18,11 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const user = userCredential.user;
 
       navigate("/profile");
@@ -37,10 +45,14 @@ const Login = () => {
 
       console.log("Google sign-in successful:", user);
       navigate("/profile");
-      toast.success("Login with Google successful!", { position: "top-center" });
+      toast.success("Login with Google successful!", {
+        position: "top-center",
+      });
     } catch (error) {
       console.error("Error during Google sign-in:", error.message);
-      toast.error("Google sign-in failed. Please try again.", { position: "top-center" });
+      toast.error("Google sign-in failed. Please try again.", {
+        position: "top-center",
+      });
     }
   };
 
@@ -75,7 +87,6 @@ const Login = () => {
           Login
         </button>
       </form>
-
       {/* Google Sign-In Button */}
       <button
         onClick={handleGoogleSignIn}
@@ -83,9 +94,7 @@ const Login = () => {
       >
         Sign In with Google
       </button>
-
       <ToastContainer /> {/* Required for displaying toast messages */}
-
       <p className="text-sm mt-4">
         Not registered?{" "}
         <NavLink

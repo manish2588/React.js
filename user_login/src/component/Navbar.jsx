@@ -75,6 +75,14 @@ const Navbar = () => {
           >
             Profile
           </NavLink>
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              isActive ? 'text-yellow-300 font-bold' : 'hover:text-gray-300'
+            }
+          >
+            Dashboard
+          </NavLink>
         </div>
       </div>
     </nav>

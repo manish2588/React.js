@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { auth, db } from "./firebase"; // Ensure firebase.js is correctly configured
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -22,6 +22,7 @@ const SignUp = () => {
         await setDoc(doc(db, "Users", user.uid), {
           email: user.email,
           name: name,
+          role:"user"
         });
 
         toast.success("User registered successfully!", {
