@@ -67,6 +67,14 @@ const Navbar = () => {
           >
             Signup
           </NavLink>
+          <NavLink
+            to="/profile"
+            className={({ isActive }) =>
+              isActive ? 'text-yellow-300 font-bold' : 'hover:text-gray-300'
+            }
+          >
+            Signup
+          </NavLink>
         </div>
       </div>
     </nav>

@@ -1,9 +1,11 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { auth } from "./firebase";
-import { db, } from "./firebase";
-import { setDoc,doc } from "firebase/firestore";
+import { auth, db } from "./firebase"; // Ensure firebase.js is correctly configured
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { setDoc, doc } from "firebase/firestore";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -11,32 +13,36 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Password:", password);
-    setEmail("");
-    setName("");
-    setPassword("");
-    // Add sign-up logic here (e.g., API call)
+
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      const user = auth.currentUser;
-      console.log(user);
-      if(user){
-        await setDoc(doc(db,"Users",user.uid),
-        {
-            email:user.email,
-            name:name
-        }
-    )
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      if (user) {
+        await setDoc(doc(db, "Users", user.uid), {
+          email: user.email,
+          name: name,
+        });
+
+        toast.success("User registered successfully!", {
+          position: "top-center",
+        });
+
+        setEmail("");
+        setName("");
+        setPassword("");
       }
     } catch (error) {
-        console.log(error)
+      console.error("Error during registration:", error);
+      toast.error(error.message, {
+        position: "top-center",
+      });
     }
   };
-  
+
   return (
     <div className="bg-white p-6 rounded shadow-md w-80 mx-auto mt-10">
+      <ToastContainer />
       <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">

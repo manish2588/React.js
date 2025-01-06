@@ -2,6 +2,7 @@ import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import AppLayout from "./component/AppLayout";
 import Login from "./component/Login";
 import SignUp from "./component/SignUp";
+import Profile from "./component/Profile";
 
 
 function App() {
@@ -17,6 +18,10 @@ function App() {
         {
           path:"signup",
           element:<SignUp/>
+        },
+        {
+          path:"profile",
+          element:<Profile/>
         }
       ]
     }

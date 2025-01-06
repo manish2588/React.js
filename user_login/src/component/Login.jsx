@@ -1,17 +1,34 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import { auth } from "./firebase"; // Import Firebase auth instance
+import { signInWithEmailAndPassword } from "firebase/auth"; // Firebase sign-in method
+import { toast, ToastContainer } from "react-toastify"; // Toastify for notifications
+import "react-toastify/dist/ReactToastify.css"; // Toastify CSS for styles
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
-    // Add login logic here (e.g., API call)
-    setEmail("");
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
 
+      navigate("/profile");
+
+      console.log("Login successful:", user);
+      toast.success("Login successful!", { position: "top-center" });
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error("Invalid email or password!", { position: "top-center" });
+    }
+
+    setEmail("");
     setPassword("");
   };
 
@@ -46,6 +63,7 @@ const Login = () => {
           Login
         </button>
       </form>
+      <ToastContainer /> {/* Required for displaying toast messages */}
       <p className="text-sm mt-4">
         Not registered?{" "}
         <NavLink
