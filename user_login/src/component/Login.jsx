@@ -1,26 +1,23 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { auth } from "./firebase"; // Import Firebase auth instance
-import { signInWithEmailAndPassword } from "firebase/auth"; // Firebase sign-in method
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth"; // Firebase sign-in methods
 import { toast, ToastContainer } from "react-toastify"; // Toastify for notifications
 import "react-toastify/dist/ReactToastify.css"; // Toastify CSS for styles
 import { useNavigate } from "react-router-dom";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
       navigate("/profile");
-
       console.log("Login successful:", user);
       toast.success("Login successful!", { position: "top-center" });
     } catch (error) {
@@ -30,6 +27,21 @@ const Login = () => {
 
     setEmail("");
     setPassword("");
+  };
+
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider(); // Google Auth provider
+    try {
+      const result = await signInWithPopup(auth, provider); // Sign in with Google
+      const user = result.user; // Get the signed-in user
+
+      console.log("Google sign-in successful:", user);
+      navigate("/profile");
+      toast.success("Login with Google successful!", { position: "top-center" });
+    } catch (error) {
+      console.error("Error during Google sign-in:", error.message);
+      toast.error("Google sign-in failed. Please try again.", { position: "top-center" });
+    }
   };
 
   return (
@@ -63,7 +75,17 @@ const Login = () => {
           Login
         </button>
       </form>
+
+      {/* Google Sign-In Button */}
+      <button
+        onClick={handleGoogleSignIn}
+        className="w-full bg-red-500 text-white py-2 mt-4 rounded hover:bg-red-600"
+      >
+        Sign In with Google
+      </button>
+
       <ToastContainer /> {/* Required for displaying toast messages */}
+
       <p className="text-sm mt-4">
         Not registered?{" "}
         <NavLink

@@ -37,9 +37,6 @@ const SignUp = () => {
       toast.error(error.message, {
         position: "top-center",
       });
-    }
-  };
-
   return (
     <div className="bg-white p-6 rounded shadow-md w-80 mx-auto mt-10">
       <ToastContainer />

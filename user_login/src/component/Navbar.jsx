@@ -73,7 +73,7 @@ const Navbar = () => {
               isActive ? 'text-yellow-300 font-bold' : 'hover:text-gray-300'
             }
           >
-            Signup
+            Profile
           </NavLink>
         </div>
       </div>
