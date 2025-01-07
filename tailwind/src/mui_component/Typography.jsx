@@ -22,7 +22,7 @@ function Typo() {
   };
   return (
     <>
-      <Typography variant="h1">h1 heading</Typography>
+   
       <Typography variant="h2">h2 heading</Typography>
       <Button variant="text">MUI</Button>
       <Button variant="outlined" className="bg-red-300">
