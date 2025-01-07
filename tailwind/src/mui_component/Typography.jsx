@@ -18,7 +18,7 @@ function Typo() {
     setAge(e.target.value);
   };
   const handleSlider = (event, newValue) => {
-    setValue(newValue); // Update the value state when the slider changes
+    setValue(newValue); 
   };
   return (
     <>
