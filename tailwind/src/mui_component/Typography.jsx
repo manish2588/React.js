@@ -66,7 +66,7 @@ function Typo() {
           >
             <MenuItem value={10}>Ram</MenuItem>
             <MenuItem value={20}>Shyam</MenuItem>
-            <MenuItem value={30}>Hari</MenuItem>
+           
           </Select>
         </FormControl>
       </div>
