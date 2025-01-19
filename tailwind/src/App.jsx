@@ -7,6 +7,7 @@ import { Input } from "./styled_component/Input";
 import Typo from "./mui_component/Typography";
 import SelectPractice from "./component/SelectPractice";
 import Form2 from "./component/Form2";
+import RenderingList from "./component/RenderingList";
 
 function App() {
   return (
@@ -37,9 +38,7 @@ function App() {
         <AnotherButton primary> Another</AnotherButton>
       </div>
       <Input type="text" placeholder="Styled Component" color="Green" />
-      <Typo />
-      <SelectPractice/>
-      <Form2/>
+     <RenderingList/>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function Form2() {
   const [formData, setFormData] = useState({
@@ -6,7 +6,19 @@ function Form2() {
     email: "",
     hobby: [],
   });
+  const [arr, setArr] = useState(["Item 1", "Item 2", "Item 3"]); // Initial array in state
+  const [checkedItems, setCheckedItems] = useState({}); // Track checkbox states
 
+  const handleCheckboxChange = (index) => {
+    setCheckedItems((prev) => ({
+      ...prev,
+      [index]: !prev[index], // Toggle the checkbox state
+    }));
+  };
+  const handleDelete = (id) => {
+    const newArr = arr.filter((_, index) => index !== id); // Create a new array without the deleted item
+    setArr(newArr); // Update the state
+  };
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -81,6 +93,25 @@ function Form2() {
           </div>
         </form>
       </section>
+      <div className="m-20">
+      <ul>
+        {arr.map((item, index) => {
+          return (
+            <li key={index}>
+              <input
+                type="checkbox"
+                checked={!!checkedItems[index]} // Ensure a boolean value
+                onChange={() => handleCheckboxChange(index)} // Proper onChange handler
+              />
+              {item}
+              <span className="m-4">
+                <button onClick={() => handleDelete(index)}>Delete</button>
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
     </>
   );
 }
