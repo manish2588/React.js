@@ -3,6 +3,7 @@ export const TodoSlice = createSlice({
   name: "todo",
   initialState: {
     task: "",
+    edit_input:"",
     tasks: [],
   },
   reducers: {
@@ -17,9 +18,14 @@ export const TodoSlice = createSlice({
     },
     delete_task:(state,action)=>{
        state.tasks=state.tasks.filter((item,index)=>(index!==action.payload))
-      
+    },
+    edit_task:(state,action)=>{
+      state.edit_input=action.payload;
+    },
+    edit_finally:(state,action)=>{
+      state.tasks[action.payload]=state.edit_input;
     }
   },
 });
-export const { updateInput, add_task,delete_task } = TodoSlice.actions;
+export const { updateInput, add_task,delete_task,edit_task,edit_finally} = TodoSlice.actions;
 export default TodoSlice.reducer;
