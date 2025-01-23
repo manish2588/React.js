@@ -1,11 +1,11 @@
-import AnimatedDiv from "./component/AnimatedDiv";
-import DropDown from "./component/DropDown";
+
+import ReplacingDiv from "./component/ReplacingDiv";
 
 
 function App() {
   return (
     <div>
-      <DropDown/>
+      <ReplacingDiv/>
     </div>
   )
 }
