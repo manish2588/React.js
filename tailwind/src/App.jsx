@@ -8,10 +8,13 @@ import Typo from "./mui_component/Typography";
 import SelectPractice from "./component/SelectPractice";
 import Form2 from "./component/Form2";
 import RenderingList from "./component/RenderingList";
+import FirstAnimation from "./animation/FirstAnimation";
 
 function App() {
   return (
     <>
+   {/*
+
       <section>
         <div className="flex flex-col lg:flex-row space-y-6 space-x-0 lg:space-x-2 lg:space-y-0">
           <div className="bg-slate-400 p-4 box-border lg:basis-1/2 px-auto flex justify-center">
@@ -32,13 +35,15 @@ function App() {
           </div>
         </div>
       </section>
+   
+   */}
       <div>
         <h1>Button from Styled Component</h1>
         <Button primary={true}> Button</Button>
         <AnotherButton primary> Another</AnotherButton>
       </div>
       <Input type="text" placeholder="Styled Component" color="Green" />
-     <RenderingList/>
+     <FirstAnimation/>
     </>
   );
 }
