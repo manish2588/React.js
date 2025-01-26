@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import Basics from "./framerMotion/Basics";
 
 function App() {
   const [bgColor, setBgColor] = useState("white");
@@ -54,6 +55,7 @@ function App() {
       >
         Long press and move upward over me
       </div>
+      <Basics/>
     </div>
   );
 }
