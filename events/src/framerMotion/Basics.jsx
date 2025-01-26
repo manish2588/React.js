@@ -1,7 +1,20 @@
-
+import { motion, useScroll, useTransform } from "framer-motion"
 function Basics() {
+    const {scrollYProgress}=useScroll();
+    console.log(scrollYProgress);
+    const background=useTransform(
+        scrollYProgress,
+        [0,0.25,0.5,1],
+        ["green","blue","yellow","green"]
+    )
   return (
-    <div className="bg-green-300  flex flex-col items-center justify-center">
+    <motion.div className="bg-green-300  flex flex-col items-center justify-center">
+      <motion.div className=" fixed top-0 left-0 w-full h-2 origin-left"
+        style={{ scaleX: scrollYProgress,
+            background
+         }}>
+
+      </motion.div>
       <p className="w-96">
         In grammar, an article is any member of a class of dedicated words that
         are used with noun phrases to mark the identifiability of the referents
@@ -62,7 +75,7 @@ function Basics() {
         also include demonstratives, possessive determiners, and quantifiers. In
         linguistic interlinear glossing, articles are abbreviated as ART.
       </p>
-    </div>
+    </motion.div>
   );
 }
 

@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
-import Basics from "./framerMotion/Basics";
+
+import HorizontalSlider from "./framerMotion/HorizontalSlider";
 
 function App() {
   const [bgColor, setBgColor] = useState("white");
@@ -55,7 +56,7 @@ function App() {
       >
         Long press and move upward over me
       </div>
-      <Basics/>
+      <HorizontalSlider />
     </div>
   );
 }
