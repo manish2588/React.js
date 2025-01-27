@@ -1,6 +1,8 @@
 import { useState, useRef } from "react";
 
 import HorizontalSlider from "./framerMotion/HorizontalSlider";
+import LayoutAnimation from "./framerMotion/LayoutAnimation";
+import ChildrenAnimation from "./framerMotion/ChildrenANimation";
 
 function App() {
   const [bgColor, setBgColor] = useState("white");
@@ -56,7 +58,9 @@ function App() {
       >
         Long press and move upward over me
       </div>
-      <HorizontalSlider />
+      <LayoutAnimation/>
+      <ChildrenAnimation/>
+      <HorizontalSlider/>
     </div>
   );
 }

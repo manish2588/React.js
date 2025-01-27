@@ -52,18 +52,40 @@ function HorizontalSlider() {
         linguistic interlinear glossing, articles are abbreviated as ART.
       </p>
    <div className="mx-auto w-96 grid place-content-center h-32 relative ">
-    <h1 className="relative z-0"> Scroll to show me</h1>
-    <motion.div className="absolute z-10 bg-green-500 top-0 w-full h-full "
-    initial={{opacity:1,
-        
+    <motion.h1 className="relative z-0"
+    initial={{scale:0}}
+    whileInView={{scale:[0,0.25,0.5,1],
+      transition:{delay:0.2}
     }}
-    whileInView={{opacity:0,
-        
+    viewport={{
+      amount: 0.9, // Trigger animation when 50% of the element is visible
+       
     }}
-   
-    transition={{duration:1}}
-    viewport={{amount:"all"}}
-    ></motion.div>
+    > Scroll to show me</motion.h1>
+    <motion.div
+  className="absolute z-10 bg-green-500 top-0 w-full h-full border rounded-br-full "
+  initial={{
+    opacity: 1,
+    scaleX: 1,
+    scaleY: 1,
+  }}
+  whileInView={{
+    opacity: 0,
+    scaleX: 0,
+    scaleY: 0,
+  }}
+  transition={{
+    duration: 1,
+  }}
+  viewport={{
+    amount: 0.9, // Trigger animation when 50% of the element is visible
+     // Run animation only once
+  }}
+  style={{
+    transformOrigin: "bottom right", // Start shrinking from bottom-right corner but in this case scale is decreasing so reverse it
+  }}
+/>
+
    </div>
    <p className="w-96">
         In grammar, an article is any member of a class of dedicated words that
