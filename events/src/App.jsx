@@ -1,9 +1,10 @@
 import { useState, useRef } from "react";
-
+import { motion } from "framer-motion";
 import HorizontalSlider from "./framerMotion/HorizontalSlider";
 import LayoutAnimation from "./framerMotion/LayoutAnimation";
 import ChildrenAnimation from "./framerMotion/ChildrenANimation";
-
+import { LayoutGroup } from "framer-motion";
+import LayoutId from "./framerMotion/LayoutId";
 function App() {
   const [bgColor, setBgColor] = useState("white");
   const [isPressed, setIsPressed] = useState(false);
@@ -42,26 +43,40 @@ function App() {
   };
 
   return (
-    <div className="App">
+  <LayoutGroup>
+      <motion.div
+      className="App"
+      layout // Ensure smooth transition for everything inside
+      transition={{ type: "spring", stiffness: 300, damping: 30 }} // Smooth transition for all layout changes
+    >
       <h1>Mouse Long Press and Move Upwards Example</h1>
-      <div
+      <motion.div
         style={{
           width: "300px",
           height: "200px",
           backgroundColor: bgColor,
-          transition: "background-color 0.5s ease", // Smooth transition
+          transition: "background-color 0.5s ease", // Smooth transition for color change
         }}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
+        layout // Apply layout here for smooth resizing
       >
         Long press and move upward over me
-      </div>
-      <LayoutAnimation/>
-      <ChildrenAnimation/>
-      <HorizontalSlider/>
-    </div>
+      </motion.div>
+
+    
+        {" "}
+        <LayoutAnimation />
+        {/* Ensure smooth transition for the content below */}
+        <ChildrenAnimation />
+        <HorizontalSlider />
+      
+    </motion.div>
+    <LayoutId/>
+  </LayoutGroup>
+  
   );
 }
 

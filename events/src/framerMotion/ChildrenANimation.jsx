@@ -20,6 +20,7 @@ const item = {
 export default function ChildrenAnimation() {
   return (
     <motion.div
+     layout
       variants={container}
       initial="hidden"
       animate="visible"

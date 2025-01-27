@@ -3,7 +3,11 @@ import { motion } from "framer-motion"
 function HorizontalSlider() {
   return (
    <>
-   <p className="w-96">
+  <motion.div
+  layout
+  >
+
+<p className="w-96">
         In grammar, an article is any member of a class of dedicated words that
         are used with noun phrases to mark the identifiability of the referents
         of the noun phrases. The category of articles constitutes a part of
@@ -135,6 +139,7 @@ function HorizontalSlider() {
         also include demonstratives, possessive determiners, and quantifiers. In
         linguistic interlinear glossing, articles are abbreviated as ART.
       </p>
+  </motion.div>
    </>
   )
 }
