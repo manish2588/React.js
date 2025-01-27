@@ -10,7 +10,7 @@ function App() {
   const [isPressed, setIsPressed] = useState(false);
   const startY = useRef(0);
   const lastY = useRef(0); // To store the last position to check the distance
-
+  const [isHovered, setIsHovered] = useState(false);
   const colors = [
     "lightblue",
     "lightgreen",
@@ -75,6 +75,21 @@ function App() {
       
     </motion.div>
     <LayoutId/>
+    <div className="w-32 mb-16 relative">
+      {/* Text */}
+      <p className="relative w-full z-0">Contact</p>
+
+      {/* Animated Background */}
+      <motion.p
+        className="absolute w-full h-full z-10 bg-blue-600 top-0 left-0"
+        initial={{ scaleX: 1 }}
+        animate={isHovered ? { scaleX: 0 } : { scaleX: 1 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+        style={{ transformOrigin: "right" }}
+        onHoverStart={() => setIsHovered(true)}
+        onHoverEnd={() => setIsHovered(false)}
+      />
+    </div>
   </LayoutGroup>
   
   );
