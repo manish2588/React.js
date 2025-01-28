@@ -1,20 +1,26 @@
-
 import Header from './Header';
 import Footer from './Footer';
-import { Outlet, useNavigation } from 'react-router-dom';
+import { Outlet, useNavigation, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
 function AppLayout() {
-  const loading= useNavigation();
-  if(loading.state==="loading") return <h1> Loading
+  const loading = useNavigation();
+  const location = useLocation(); // Track route changes
 
-  </h1>
+  if (loading.state === "loading") return <h1>Loading...</h1>;
+
   return (
     <>
-    <Header/>
-    <Outlet/>
-    <Footer/>
+      <Header />
+      <AnimatePresence mode="wait">
+        {/* Key changes trigger exit animations */}
+        <div key={location.key}> 
+          <Outlet />
+        </div>
+      </AnimatePresence>
+      <Footer />
     </>
-  )
+  );
 }
 
 export default AppLayout;

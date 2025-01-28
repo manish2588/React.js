@@ -23,15 +23,13 @@ function App() {
         {
           path: "/about",
           element: <About />,
-          loader: Loader
+          loader: Loader,
         },
         {
-          path:"/about/:id",
-          element:<User/>,
-          loader:userLoader
-
+          path: "/about/:id",
+          element: <User />,
+          loader: userLoader,
         },
-
         {
           path: "/services",
           element: <Services />,
@@ -40,7 +38,7 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router}></RouterProvider>;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
