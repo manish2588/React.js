@@ -5,6 +5,7 @@ import LayoutAnimation from "./framerMotion/LayoutAnimation";
 import ChildrenAnimation from "./framerMotion/ChildrenANimation";
 import { LayoutGroup } from "framer-motion";
 import LayoutId from "./framerMotion/LayoutId";
+import Drag from "./framerMotion/Drag";
 function App() {
   const [bgColor, setBgColor] = useState("white");
   const [isPressed, setIsPressed] = useState(false);
@@ -90,6 +91,7 @@ function App() {
         onHoverEnd={() => setIsHovered(false)}
       />
     </div>
+    <Drag/>
   </LayoutGroup>
   
   );

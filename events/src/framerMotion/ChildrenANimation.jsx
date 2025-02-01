@@ -30,6 +30,7 @@ export default function ChildrenAnimation() {
         justifyContent: "center",
       }}
     >
+      
       {[1, 2, 3].map((i) => (
         <motion.div
           key={i}
