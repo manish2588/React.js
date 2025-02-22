@@ -2,7 +2,7 @@ import Course1 from "./course/Course1";
 import Course2 from "./course/Course2";
 import Course3 from "./course/Course3";
 import { useState } from 'react';
-
+import { motion } from "framer-motion"
 function ReplacingDiv() {
   const [arr, setArr] = useState([<Course1 />, <Course2 />, <Course3 />]);
   const [selectedIdx, setSelectedIdx] = useState(0); // Track the currently selected index
@@ -14,10 +14,12 @@ function ReplacingDiv() {
   };
 
   return (
-    <main className="bg-blue-400 flex h-96 space-x-4 max-w-full">
+    <motion.main className="bg-blue-400 flex h-96 space-x-4 max-w-full">
       {arr.map((course, index) => (
-        <div
+        <motion.div
           key={index}
+          layout
+          layoutId={index}
           className={`
             ${index === selectedIdx && "bg-red-300 basis-3/6 cursor-not-allowed"} // Unclickable and large
             ${index !== selectedIdx && "bg-slate-200 basis-1/6 cursor-pointer"} // Clickable and small
@@ -25,9 +27,9 @@ function ReplacingDiv() {
           onClick={() => handleClick(index)}
         >
           {course}
-        </div>
+        </motion.div>
       ))}
-    </main>
+    </motion.main>
   );
 }
 
